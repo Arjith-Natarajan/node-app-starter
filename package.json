@@ -1,0 +1,44 @@
+{
+  "name": "generic-project",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prebuild": "rimraf dist",
+    "build": "babel --copy-files --out-dir dist --ignore *.test.js src",
+    "start": "npm run build && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier --write 'src/*.js'",
+    "format-code": "yarn run prettier && yarn run lint:fix",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn run format-code",
+      "git add"
+    ]
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": "Arjith Natarajan <arjith496@gmail.com> (https://arjithn.io/)",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-eslint": "8.2.6",
+    "babel-preset-env": "1.7.0",
+    "eslint": "5.2.0",
+    "eslint-config-google": "0.9.1",
+    "eslint-config-standard": "11.0.0",
+    "eslint-plugin-import": "2.13.0",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-promise": "3.8.0",
+    "eslint-plugin-standard": "3.1.0",
+    "lint-staged": "7.2.0",
+    "prettier": "1.13.7",
+    "rimraf": "2.6.2"
+  }
+}
